@@ -29,7 +29,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven product catatlogue
-      run: mvn -B package --file /home/runner/work/Github-actions/Github-actions/productcatalogue/pom.xml
+      run: mvn -B package --file productcatalogue/pom.xml
     - name: affichage  
       run: ls -la
     - name: Set up Docker Buildx
@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Container image
-      run: docker build -t nouramine/product /home/runner/work/Github-actions/Github-actions/productcatalogue/Dockerfile
+      run: docker build -t nouramine/product productcatalogue/
     
       
    
