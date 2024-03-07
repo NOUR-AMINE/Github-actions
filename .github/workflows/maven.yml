@@ -38,5 +38,5 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build and push
-      run: docker build -t testgit/product -f /home/runner/work/Github-actions/Github-actions/productcatalogue/Dockerfile .
+      run: docker build -t product:latest -f /home/runner/work/Github-actions/Github-actions/productcatalogue .
    
