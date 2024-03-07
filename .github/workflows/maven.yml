@@ -36,7 +36,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Container image
-      run: docker docker buildx build --tag nouramine/testgit:latest 
+      run: docker docker buildx build -tag nouramine/testgit:latest 
     - name: Publish Docker image
       run: docker push nouramine/testgit:latest
    
