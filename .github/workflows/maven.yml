@@ -28,7 +28,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-        
+    - run: ls -la
+    - run: pwd
     - name: Build with Maven product catatlogue
       run: mvn -B package --file productcatalogue/pom.xml
       
