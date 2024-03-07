@@ -38,7 +38,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Container image
-      run: docker build -t testgit/product:latest -f /home/runner/work/Github-actions/Github-actions/productcatalogue/Dockerfile .
+      run: docker build -t nouramine/product -f /home/runner/work/Github-actions/Github-actions/productcatalogue/Dockerfile .
     
       
    
