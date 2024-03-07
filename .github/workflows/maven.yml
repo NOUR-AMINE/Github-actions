@@ -38,5 +38,5 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build and push
-      run: docker build -t product:latest -f/Dockerfile .
+      run: docker build -t product:latest -f /var/lib/docker/tmp/buildkit-mount126576890/Dockerfile .
    
