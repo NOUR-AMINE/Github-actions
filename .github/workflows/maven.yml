@@ -29,7 +29,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven product catatlogue
-      run: mvn -B package --file /NOUR-AMINE/Github-actions/productcatalogue/pom.xml
+      run: mvn -B package --file /productcatalogue/pom.xml
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
