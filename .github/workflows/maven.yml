@@ -35,8 +35,9 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build Container image
-      run: docker build -t testgit/product -f  /home/runner/work/Github-actions/Github-actions/productcatalogue/dockerfiles .
-    - name: Publish Docker image
-      run: docker push nouramine/testgit:latest
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        push: true
+        tags: testgit/product:latest
    
