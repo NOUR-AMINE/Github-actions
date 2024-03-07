@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: Ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: checkout repository 
