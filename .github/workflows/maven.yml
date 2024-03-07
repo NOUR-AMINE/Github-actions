@@ -27,7 +27,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven
     - run: ls -la
     - run: pwd
     - name: Build with Maven product catatlogue
