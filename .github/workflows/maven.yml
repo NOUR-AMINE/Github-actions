@@ -30,7 +30,7 @@ jobs:
     - run: ls -la
     - run: pwd
     - name: Build with Maven product catatlogue
-      run: mvn -B package --file /productcatalogue/pom.xml
+      run: mvn -B package --file productcatalogue/pom.xml
       
     - name: Build with Maven Stockmanager
       run: mvn -B package --file stockmanager/pom.xml
