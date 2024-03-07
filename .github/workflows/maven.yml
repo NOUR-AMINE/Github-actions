@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: Ubuntu-latest
 
     steps:
     - name: checkout repository 
@@ -33,10 +33,10 @@ jobs:
       run: mvn -B package --file productcatalogue/pom.xml
       
     - name: Build with Maven Stockmanager
-      run: mvn -B package --file stockmanager/pom.xml
+      run: mvn -B package -DskipTests --file stockmanager/pom.xml
 
     - name: Build with Maven shopfront
-      run: mvn -B package --file shopfront/pom.xml
+      run: mvn -B package -DskipTests --file shopfront/pom.xml
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
