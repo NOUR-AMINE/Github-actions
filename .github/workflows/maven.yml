@@ -29,14 +29,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven product catatlogue
-      run: mvn -B package --file /home/runner/work/Github-actions/Github-actions/productcatalogue/pom.xml
+      run: mvn -B package --file /home/runner/work/Github-actions/productcatalogue/pom.xml
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Container image
-      run: docker docker buildx build -tag nouramine/testgit:latest 
+      run: docker build -t testgit/product -f  /home/runner/work/Github-actions/productcatalogue/dockerfiles .
     - name: Publish Docker image
       run: docker push nouramine/testgit:latest
    
