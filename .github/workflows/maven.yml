@@ -28,14 +28,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven product catatlogue
       run: mvn -B package --file productcatalogue/pom.xml
       
-    - name: Build with Maven shopfront
-      run: mvn -B package --file shopfront/pom.xml
-      
     - name: Build with Maven Stockmanager
       run: mvn -B package --file stockmanager/pom.xml
+
+    - name: Build with Maven shopfront
+      run: mvn -B package --file shopfront/pom.xml
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
