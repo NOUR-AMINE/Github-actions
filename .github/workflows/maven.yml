@@ -10,63 +10,67 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
-
-    runs-on: Ubuntu-latest
+  test:
+    runs-on: self-hosted
 
     steps:
-    - name: checkout repository 
+    - name: checkout repository
       uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-    - run: ls -la
-    - run: pwd
+    
     - name: Build with Maven product catatlogue
       run: mvn -B package --file productcatalogue/pom.xml
-      
+    
     - name: Build with Maven Stockmanager
-      run: mvn -B package -DskipTests --file stockmanager/pom.xml
-
+      run: mvn -B package --file stockmanager/pom.xml
+    
     - name: Build with Maven shopfront
-      run: mvn -B package -DskipTests --file shopfront/pom.xml
-      
+      run: mvn -B package --file shopfront/pom.xml
+    
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-      
+    
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        
+    
     - name: Build docker image product
       run: docker build -t nouramine/product productcatalogue/
-      
+    
     - name: Build docker image shopfront
       run: docker build -t nouramine/shop shopfront/
-      
+    
     - name: Build docker image stockmanager
       run: docker build -t nouramine/stock stockmanager/
-
+    
     - name: affichage docker images
       run: docker image ls
-
+    
     - name: Push docker image shopfront
       run: docker push nouramine/shop
-
+    
     - name: Push docker image productcatalogue
       run: docker push nouramine/product
-
+    
     - name: Push docker image stockmanager
       run: docker push nouramine/stock
+    
+    - name: deploy productcatalogue
+      run: kubectl apply -f kubernetes/productcatalogue-service.yaml
+
+    - name: deploy shopfront
+      run: kubectl apply -f kubernetes/shopfront-service.yaml
+
+    - name: deploy stockmanager
+      run: kubectl apply -f kubernetes/stockmanager-service.yaml
+    
+    - name: show the deployement
+      run: kubectl get deployments
   
       
     
